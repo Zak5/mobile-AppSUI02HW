@@ -7,17 +7,19 @@
 
 import SwiftUI
 import Networking
+import Navigation
 
 struct ArticleDetailView: View {
 
-    @Binding var article: Article
-    
+    var article: Article
+    @EnvironmentObject var routeModel: NavigationContainerViewModel
+
     var body: some View {
         List {
             Button {
-                //newsViewModel.loadNextPage()
+                routeModel.popToRoot()
             } label: {
-                Text("Read more")
+                Text("Back to news")
                     .padding()
                     .background(Color.green)
                     .foregroundColor(.white)

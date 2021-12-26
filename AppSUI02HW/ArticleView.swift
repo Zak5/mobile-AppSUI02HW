@@ -7,17 +7,19 @@
 
 import SwiftUI
 import Networking
+import Navigation
 
 struct ArticleView: View {
     
     var article: Article
-    
+    @EnvironmentObject var routeModel: NavigationContainerViewModel
+
     var body: some View {
         List {
             Text(article.title ?? "")
             Text(article.content ?? "")
             Button {
-                //newsViewModel.loadNextPage()
+                routeModel.push(screenView: LazyView(ArticleDetailView(article: article)).toAnyView())
             } label: {
                 Text("Read more")
                     .padding()
